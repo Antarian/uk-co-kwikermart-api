@@ -1,0 +1,46 @@
+security:
+    encoders:
+        App\Auth\ORM\Entity\User:
+            algorithm: auto
+
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    providers:
+        db_user_provider:
+            entity:
+                class: App\Auth\ORM\Entity\User
+                property: email
+        jwt:
+            lexik_jwt:
+                class: App\Auth\ORM\Entity\User
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        login:
+            provider: db_user_provider
+            pattern:  ^/login
+            stateless: true
+            anonymous: true
+            json_login:
+                check_path:      /login_check
+                username_path:   email
+                password_path:   password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        api:
+            provider: jwt
+            pattern:   ^/api/v0
+            stateless: true
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login,    roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v0,         roles: IS_AUTHENTICATED_FULLY }

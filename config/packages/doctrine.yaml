@@ -1,0 +1,27 @@
+doctrine:
+    dbal:
+        dbname: '%env(resolve:APP_MARIADB_NAME)%'
+        host: '%env(resolve:APP_MARIADB_HOST)%'
+        port: '%env(resolve:APP_MARIADB_PORT)%'
+        user: '%env(resolve:APP_MARIADB_USER)%'
+        password: '%env(resolve:APP_MARIADB_PASSWORD)%'
+        driver: pdo_mysql
+        # IMPORTANT: You MUST configure your server version
+        server_version: '%env(resolve:APP_MARIADB_SERVER_VERSION)%'
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        auto_mapping: true
+        mappings:
+            App:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: App
+            Auth:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Auth/ORM/Entity'
+                prefix: 'App\Auth\ORM\Entity'
+                alias: Auth
