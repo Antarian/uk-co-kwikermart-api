@@ -13,22 +13,27 @@ class AuthController extends AbstractController
      * @var UserPasswordEncoderInterface
      */
     private $passwordEncoder;
+
     /**
      * @var AuthServiceInterface
      */
-    private $service;
+    private $authService;
 
     /**
      * AuthController constructor.
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param AuthServiceInterface $service
+     * @param AuthServiceInterface $authService
      */
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder, AuthServiceInterface $service)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, AuthServiceInterface $authService)
     {
         $this->passwordEncoder = $passwordEncoder;
-        $this->service = $service;
+        $this->authService = $authService;
     }
 
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
     public function register(Request $request): JsonResponse
     {
         /** @var User $user */
@@ -46,7 +51,7 @@ class AuthController extends AbstractController
             )
         );
 
-        $this->service->register($user);
+        $this->authService->register($user);
 
         return new JsonResponse(null, 201);
     }

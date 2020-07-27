@@ -25,3 +25,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Auth/ORM/Entity'
                 prefix: 'App\Auth\ORM\Entity'
                 alias: Auth
+            ShoppingList:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/ShoppingList/ORM/Entity'
+                prefix: 'App\ShoppingList\ORM\Entity'
+                alias: ShoppingList

@@ -1,0 +1,15 @@
+# Shopping List
+shopping_lists_create:
+    path: /shopping-lists
+    controller: App\Controller\ShoppingListsController::create
+    methods: POST|OPTIONS
+
+shopping_lists_read_all:
+    path: /shopping-lists
+    controller: App\Controller\ShoppingListsController::readAll
+    methods: GET|HEAD
+
+shopping_list_items_create:
+    path: /shopping-lists/{id}/shopping-list-items
+    controller: App\Controller\ShoppingListItemsController::create
+    methods: POST|OPTIONS

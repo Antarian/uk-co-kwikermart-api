@@ -1,3 +1,8 @@
 auth:
     resource: './routes/auth.yaml'
     type: yaml
+
+shopping_list:
+    resource: './routes/shopping-list.yaml'
+    type: yaml
+    prefix: '/api/v0'
