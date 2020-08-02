@@ -53,8 +53,6 @@ class ShoppingListItemsController extends AbstractController
             /** @var ShoppingListItem $shoppingListItem */
             $shoppingListItem = $this->get('serializer')->deserialize($request->getContent(), ShoppingListItem::class, 'json');
 
-            var_dump($shoppingListItem);
-
             if ($id !== $shoppingListItem->getShoppingList()->getId()) {
                 return new JsonResponse(null, 400);
             }
