@@ -1,9 +1,9 @@
 <?php
-namespace App\ShoppingList;
+namespace App\ShoppingListOld;
 
 
-use App\ShoppingList\ORM\Entity\ShoppingListItem;
-use App\ShoppingList\ORM\Repository\ShoppingListItemRepository;
+use App\ShoppingListOld\ORM\Entity\ShoppingListItem;
+use App\ShoppingListOld\ORM\Repository\ShoppingListItemRepository;
 
 class ShoppingListItemService implements ShoppingListItemServiceInterface
 {

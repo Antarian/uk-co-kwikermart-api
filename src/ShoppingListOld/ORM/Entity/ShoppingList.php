@@ -1,8 +1,8 @@
 <?php
 
-namespace App\ShoppingList\ORM\Entity;
+namespace App\ShoppingListOld\ORM\Entity;
 
-use App\ShoppingList\ORM\Repository\ShoppingListRepository;
+use App\ShoppingListOld\ORM\Repository\ShoppingListRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

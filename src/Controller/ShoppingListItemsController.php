@@ -2,10 +2,10 @@
 namespace App\Controller;
 
 use App\Auth\ORM\Entity\User;
-use App\ShoppingList\ORM\Entity\ShoppingList;
-use App\ShoppingList\ORM\Entity\ShoppingListItem;
-use App\ShoppingList\ShoppingListItemServiceInterface;
-use App\ShoppingList\ShoppingListServiceInterface;
+use App\ShoppingListOld\ORM\Entity\ShoppingList;
+use App\ShoppingListOld\ORM\Entity\ShoppingListItem;
+use App\ShoppingListOld\ShoppingListItemServiceInterface;
+use App\ShoppingListOld\ShoppingListServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;

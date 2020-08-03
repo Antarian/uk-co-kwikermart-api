@@ -1,8 +1,8 @@
 <?php
 
-namespace App\ShoppingList\ORM\Entity;
+namespace App\ShoppingListOld\ORM\Entity;
 
-use App\ShoppingList\ORM\Repository\ShoppingListItemRepository;
+use App\ShoppingListOld\ORM\Repository\ShoppingListItemRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;

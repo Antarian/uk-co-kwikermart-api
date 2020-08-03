@@ -1,40 +1,41 @@
 <?php
 
-namespace App\ShoppingList\ORM\Repository;
+namespace App\ShoppingListOld\ORM\Repository;
 
-use App\ShoppingList\ORM\Entity\ShoppingListItem;
+use App\ShoppingListOld\ORM\Entity\ShoppingList;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method ShoppingListItem|null find($id, $lockMode = null, $lockVersion = null)
- * @method ShoppingListItem|null findOneBy(array $criteria, array $orderBy = null)
- * @method ShoppingListItem[]    findAll()
- * @method ShoppingListItem[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ShoppingList|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ShoppingList|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ShoppingList[]    findAll()
+ * @method ShoppingList[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ShoppingListItemRepository extends ServiceEntityRepository
+class ShoppingListRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ShoppingListItem::class);
+        parent::__construct($registry, ShoppingList::class);
     }
 
     /**
-     * @param ShoppingListItem $shoppingListItem
+     * @param ShoppingList $shoppingList
      * @return int
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */
-    public function add(ShoppingListItem $shoppingListItem): int
+    public function add(ShoppingList $shoppingList): int
     {
-        $this->getEntityManager()->persist($shoppingListItem);
+        $this->getEntityManager()->persist($shoppingList);
         $this->getEntityManager()->flush();
 
-        return $shoppingListItem->getId();
+        return $shoppingList->getId();
     }
 
     // /**
-    //  * @return ShoppingListItem[] Returns an array of ShoppingListItem objects
+    //  * @return ShoppingList[] Returns an array of ShoppingList objects
     //  */
     /*
     public function findByExampleField($value)
@@ -51,7 +52,7 @@ class ShoppingListItemRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?ShoppingListItem
+    public function findOneBySomeField($value): ?ShoppingList
     {
         return $this->createQueryBuilder('s')
             ->andWhere('s.exampleField = :val')
