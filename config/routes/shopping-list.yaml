@@ -9,7 +9,7 @@ shopping_lists_read_all:
     controller: App\Controller\ShoppingListsController::readAll
     methods: GET|HEAD
 
-shopping_list_items_create:
-    path: /shopping-lists/{id}/shopping-list-items
-    controller: App\Controller\ShoppingListItemsController::create
-    methods: POST|OPTIONS
+shopping_lists_read:
+    path: /shopping-lists/{id}
+    controller: App\Controller\ShoppingListsController::read
+    methods: GET|HEAD
