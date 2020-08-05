@@ -23,7 +23,7 @@ final class ShoppingListItem
     private $shoppingList;
 
     /** @var int */
-    private $sort;
+    private $sortNumber;
 
     /** @var string */
     private $title;
@@ -31,16 +31,16 @@ final class ShoppingListItem
     /**
      * ShoppingListItem constructor.
      * @param ShoppingList $shoppingList
-     * @param int $sort
+     * @param int $sortNumber
      * @param string $title
      */
     public function __construct(
         ShoppingList $shoppingList,
-        int $sort,
+        int $sortNumber,
         string $title
     ) {
         $this->shoppingList = $shoppingList;
-        $this->sort = $sort;
+        $this->sortNumber = $sortNumber;
         $this->title = $title;
     }
 }

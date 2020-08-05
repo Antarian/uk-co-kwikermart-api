@@ -1,8 +1,11 @@
 <?php
 namespace App\ShoppingList\Entities;
 
-use App\ShoppingList\ValueObjects\ShoppingListId;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\UuidInterface;
 
 /**
  * @ORM\Entity()
@@ -10,17 +13,19 @@ use Doctrine\ORM\Mapping as ORM;
 final class ShoppingList
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\Column(type="string")
-     * @var string
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
+     *
+     * @var UuidInterface
      */
     private $id;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $title;
-
-    /** @var ShoppingListItem[] */
 
     /**
      * @ORM\OneToMany(
@@ -28,27 +33,34 @@ final class ShoppingList
      *   mappedBy="shoppingList",
      *   cascade={"PERSIST"}
      * )
+     *
      * @var Collection|ShoppingListItem[]
      */
     private $items;
 
     /**
      * ShoppingList constructor.
-     * @param ShoppingListId $shoppingListId
+     * @param UuidInterface $shoppingListId
      * @param string $title
      */
     private function __construct(
-        ShoppingListId $shoppingListId,
+        UuidInterface $shoppingListId,
         string $title
     ) {
-        $this->id = $shoppingListId->asString();
+        $this->id = $shoppingListId;
         $this->title = $title;
 
         $this->items = new ArrayCollection();
     }
 
+    /**
+     * @param UuidInterface $shoppingListId
+     * @param string $title
+     *
+     * @return ShoppingList
+     */
     public static function create(
-        ShoppingListId $shoppingListId,
+        UuidInterface $shoppingListId,
         string $title
     ): ShoppingList
     {

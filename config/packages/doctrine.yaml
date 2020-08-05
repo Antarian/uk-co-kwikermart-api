@@ -28,6 +28,6 @@ doctrine:
             ShoppingList:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/ShoppingList/ORM/Entity'
-                prefix: 'App\ShoppingList\ORM\Entity'
+                dir: '%kernel.project_dir%/src/ShoppingList/Entities'
+                prefix: 'App\ShoppingList\Entities'
                 alias: ShoppingList

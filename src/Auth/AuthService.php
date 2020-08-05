@@ -1,8 +1,10 @@
 <?php
 namespace App\Auth;
 
+use App\Auth\Event\RegisteredEvent;
 use App\Auth\ORM\Entity\User;
 use App\Auth\ORM\Repository\UserRepository;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 class AuthService implements AuthServiceInterface
 {
@@ -12,12 +14,18 @@ class AuthService implements AuthServiceInterface
     private $repository;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
      * AuthService constructor.
      * @param UserRepository $repository
      */
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, EventDispatcherInterface $eventDispatcher)
     {
         $this->repository = $repository;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -27,6 +35,9 @@ class AuthService implements AuthServiceInterface
     {
         $user->setIdentity($this->randomTokenGenerator(48));
         $this->repository->register($user);
+
+        $event = new RegisteredEvent($user->getId());
+        $this->eventDispatcher->dispatch($event, RegisteredEvent::REGISTER);
     }
 
     private function randomTokenGenerator($length)
