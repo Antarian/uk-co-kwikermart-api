@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Dtos\ShoppingListDto;
 use App\ShoppingList\Services\ShoppingListServiceInterface;
+use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,6 +25,7 @@ class ShoppingListController extends AbstractController
 
     /**
      * @param Request $request
+     * @return JsonResponse
      */
     public function create(Request $request): JsonResponse
     {
@@ -37,5 +39,27 @@ class ShoppingListController extends AbstractController
         $this->shoppingListService->addShoppingList($shoppingList->getTitle());
 
         return new JsonResponse(null, 201);
+    }
+
+    /**
+     * @return JsonResponse
+     */
+    public function readAll(): JsonResponse
+    {
+        $shoppingLists = $this->shoppingListService->findAllShoppingLists();
+
+        return new JsonResponse($shoppingLists, 200);
+    }
+
+    /**
+     * @param string $id
+     * @return JsonResponse
+     */
+    public function read(string $id): JsonResponse
+    {
+        $id = Uuid::fromString($id);
+        $shoppingList = $this->shoppingListService->findShoppingList($id);
+
+        return new JsonResponse($shoppingList, 200);
     }
 }

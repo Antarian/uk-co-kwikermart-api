@@ -2,25 +2,31 @@
 namespace App\ShoppingList\Repositories;
 
 use App\ShoppingList\Entities\ShoppingList;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Ramsey\Uuid\UuidInterface;
 
-/**
- * @method ShoppingList|null find($id, $lockMode = null, $lockVersion = null)
- * @method ShoppingList|null findOneBy(array $criteria, array $orderBy = null)
- * @method ShoppingList[]    findAll()
- * @method ShoppingList[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
-class ShoppingListRepository extends ServiceEntityRepository implements ShoppingListRepositoryInterface
+class ShoppingListRepository implements ShoppingListRepositoryInterface
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @inheritDoc
+     */
+    public function findShoppingList(UuidInterface $id): ?ShoppingList
     {
-        parent::__construct($registry, ShoppingList::class);
+        // TODO: Implement findShoppingList() method.
     }
 
-    public function add(ShoppingList $shoppingList): void
+    /**
+     * @inheritDoc
+     */
+    public function addShoppingList(ShoppingList $shoppingList): void
     {
-        $this->getEntityManager()->persist($shoppingList);
-        $this->getEntityManager()->flush();
+        // TODO: Implement addShoppingList() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function updateShoppingList(ShoppingList $shoppingList): void
+    {
+        // TODO: Implement updateShoppingList() method.
     }
 }

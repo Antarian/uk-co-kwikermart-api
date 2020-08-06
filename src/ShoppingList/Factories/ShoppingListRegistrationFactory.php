@@ -7,7 +7,7 @@ use App\ShoppingList\Repositories\ShoppingListRepositoryInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class ShoppingListFactory implements EventSubscriberInterface
+class ShoppingListRegistrationFactory implements EventSubscriberInterface
 {
     /**
      * @var ShoppingListRepositoryInterface
@@ -15,7 +15,7 @@ class ShoppingListFactory implements EventSubscriberInterface
     private $shoppingListRepository;
 
     /**
-     * ShoppingListFactory constructor.
+     * ShoppingListRegistrationFactory constructor.
      * @param ShoppingListRepositoryInterface $shoppingListRepository
      */
     public function __construct(ShoppingListRepositoryInterface $shoppingListRepository)

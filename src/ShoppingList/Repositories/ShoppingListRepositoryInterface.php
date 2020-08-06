@@ -1,3 +1,4 @@
+
 <?php
 namespace App\ShoppingList\Repositories;
 
@@ -10,10 +11,15 @@ interface ShoppingListRepositoryInterface
      * @param UuidInterface $id
      * @return ShoppingList|null
      */
-    //public function find(UuidInterface $id): ?ShoppingList;
+    public function findShoppingList(UuidInterface $id): ?ShoppingList;
 
     /**
      * @param ShoppingList $shoppingList
      */
-    public function add(ShoppingList $shoppingList): void;
+    public function addShoppingList(ShoppingList $shoppingList): void;
+
+    /**
+     * @param ShoppingList $shoppingList
+     */
+    public function updateShoppingList(ShoppingList $shoppingList): void;
 }

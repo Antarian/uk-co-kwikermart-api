@@ -1,23 +1,9 @@
 <?php
 namespace App\ShoppingList\Entities;
 
-use Doctrine\ORM\Mapping as ORM;
-
-/**
- * @ORM\Entity()
- */
 final class ShoppingListItem
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer")
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="ShoppingList")
      * @var ShoppingList
      */
     private $shoppingList;
@@ -41,6 +27,54 @@ final class ShoppingListItem
     ) {
         $this->shoppingList = $shoppingList;
         $this->sortNumber = $sortNumber;
+        $this->title = $title;
+    }
+
+    /**
+     * @return ShoppingList
+     */
+    public function getShoppingList(): ShoppingList
+    {
+        return $this->shoppingList;
+    }
+
+    /**
+     * @param ShoppingList $shoppingList
+     */
+    public function setShoppingList(ShoppingList $shoppingList): void
+    {
+        $this->shoppingList = $shoppingList;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSortNumber(): int
+    {
+        return $this->sortNumber;
+    }
+
+    /**
+     * @param int $sortNumber
+     */
+    public function setSortNumber(int $sortNumber): void
+    {
+        $this->sortNumber = $sortNumber;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
         $this->title = $title;
     }
 }
